@@ -987,6 +987,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6858750855003618708}
+  - component: {fileID: -6891172887707049619}
   m_Layer: 0
   m_Name: SettingsUI
   m_TagString: Untagged
@@ -1010,6 +1011,26 @@ Transform:
   - {fileID: 4163499683737729864}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-6891172887707049619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8970156371071437273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b4d069a2d9f17d4b8f4d725a9014713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SettingsUI
+  _id: settingsui
+  _canvasRectTransform: {fileID: 4163499683737729864}
+  _canvasGroup: {fileID: 2488789266492074626}
+  _hideOnStart: 1
+  showDuration: 0.5
+  hideDuration: 0.5
+  showEase: 27
+  hideEase: 26
 --- !u!1 &9210741953223323170
 GameObject:
   m_ObjectHideFlags: 0
