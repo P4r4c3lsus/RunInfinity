@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class UIWindow : MonoBehaviour
 {
+    [Header("Data")]
+    [SerializeField] private string _id;
     [SerializeField] private RectTransform _canvasRectTransform;
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private bool _hideOnStart;
@@ -16,6 +18,10 @@ public class UIWindow : MonoBehaviour
 
     [SerializeField] private Ease showEase= Ease.OutBack;
     [SerializeField] private Ease hideEase = Ease.InBack;
+
+    public CanvasGroup CanvasGroup => _canvasGroup;
+    public RectTransform CanvasRectTransform => _canvasRectTransform;
+    public string Id => _id;
     void Start()
     {
         Initialize();
@@ -25,7 +31,7 @@ public class UIWindow : MonoBehaviour
     {
         if (_hideOnStart)
         {
-            Hide();
+            Hide(true);
         }
     }
 
@@ -38,8 +44,9 @@ public class UIWindow : MonoBehaviour
         }
         else
         {
+            _canvasRectTransform.gameObject.SetActive(true);
             RectTransform rectTransform = _canvasGroup.GetComponent<RectTransform>();
-            rectTransform.DOScale(Vector3.one, duration:0.5f).SetEase(Ease.OutBack);
+            rectTransform.DOScale(Vector3.one, showDuration).SetEase(showEase);
         }
     }
 
@@ -53,7 +60,10 @@ public class UIWindow : MonoBehaviour
         else
         {
             RectTransform rectTransform = _canvasGroup.GetComponent<RectTransform>();
-            rectTransform.DOScale(Vector3.zero, duration: 0.5f).SetEase(Ease.InBack);
+            rectTransform.DOScale(Vector3.zero, hideDuration).SetEase(hideEase).OnComplete(() =>
+            {
+                _canvasRectTransform.gameObject.SetActive(false);
+            });
         }
     }
 }
