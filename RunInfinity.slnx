@@ -1,7 +1,10 @@
 ﻿<Solution>
+  <Project Path="FigmaToUnity.Editor.csproj" />
   <Project Path="NaughtyAttributes.Test.csproj" />
   <Project Path="NaughtyAttributes.Core.csproj" />
   <Project Path="NaughtyAttributes.Editor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="FigmaToUnity.Core.csproj" />
   <Project Path="Assembly-CSharp-firstpass.csproj" />
+  <Project Path="FigmaToUnity.Runtime.csproj" />
 </Solution>

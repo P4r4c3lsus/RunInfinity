@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 53
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c869cf01e7e2f84bb428ab9665f0308, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FigmaToUnity.Editor::FigmaToUnity.Editor.FigmaImportSettings
+  LastFileUrl: https://www.figma.com/design/EcpW9cFRZ3xjJ6Arp5chbx/Untitled?node-id=0-1&t=bib5NCeWOmz9TCTI-1
+  OutputFolder: Assets/FigmaImporterOutput
+  PrefabOutputFolder: Assets/Prefabs/Figma
+  FrameListDepth: 2
+  ApiDepth: 100
+  SpriteScale: 2
+  MaxConcurrentDownloads: 8
+  MaxDownloadAttempts: 3
+  RequestTimeoutSeconds: 60
+  LongRateLimitDialogThresholdSeconds: 20
+  ReuseExistingSprites: 1
+  EnableAutoComponentPrefabs: 0
+  ImportMode: 0
+  Backend: 0
+  ProceduralImageFalloff: 0.5
+  TextComponent: 0
+  DefaultTmpFont: {fileID: 0}
+  FallbackTmpFonts: []
+  EnableAutoSystemFontFallback: 1
+  DefaultLegacyFont: {fileID: 0}
+  LegacyBestFit: 0
+  LegacyHorizontalWrapMode: 0
+  LegacyVerticalWrapMode: 0
+  LegacyLineSpacing: 1

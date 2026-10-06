@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.longgames.figma-to-unity": "file:C:/Users/A115-11/Downloads/FigmaToUnity-main/FigmaToUnity-main/FigmaToUnity",
     "com.unity.2d.animation": "15.1.0",
     "com.unity.2d.aseprite": "5.0.3",
     "com.unity.2d.psdimporter": "14.0.3",
