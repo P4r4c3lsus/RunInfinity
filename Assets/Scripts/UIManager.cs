@@ -4,6 +4,8 @@ using NaughtyAttributes;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance { get; private set; }
+
     [SerializeField] private List<UIWindow> _uiWindows;
     public List<UIWindow> UIWindows => _uiWindows;
 
