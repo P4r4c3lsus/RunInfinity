@@ -654,8 +654,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8444559366076838606}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.96948355, y: 0.9347458}
-  m_AnchorMax: {x: 0.9984351, y: 0.9974576}
+  m_AnchorMin: {x: 0.96192724, y: 0.93446654}
+  m_AnchorMax: {x: 0.99843496, y: 0.9994399}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -689,7 +689,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 04b386b927ce6c74190961bad4a8149c, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -881,7 +881,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 389086fd6c0afe3448945f2f407bc0a6, type: 3}
   m_Type: 0
-  m_PreserveAspect: 1
+  m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1294,6 +1294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6299367554933764619}
   - component: {fileID: 6115194171455324929}
+  - component: {fileID: 8108277830425310136}
   m_Layer: 0
   m_Name: Vertical_Layout
   m_TagString: Untagged
@@ -1349,3 +1350,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &8108277830425310136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8187448624682575662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c47c221cc66c74e86ceb52a5d0b83b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResponsiveElement
+  rectTransform: {fileID: 6299367554933764619}
+  mobileAnchorMin: {x: 0.4113263, y: 0.06430932}
+  mobileAnchorMax: {x: 0.5886737, y: 0.7950127}
+  tabletAnchorMin: {x: 0.4113263, y: 0.06430932}
+  tabletAnchorMax: {x: 0.5886737, y: 0.7950127}
