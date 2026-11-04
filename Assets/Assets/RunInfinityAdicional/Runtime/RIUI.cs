@@ -58,6 +58,8 @@ public sealed class RIUI : MonoBehaviour
             }
         }
         BuildHUD();
+        PrepareSettingsAppearance();
+        StyleBackButton();
         if (windows.TryGetValue("settingsui", out Window settings))
         {
             Slider slider = settings.root.GetComponentInChildren<Slider>(true);
@@ -84,6 +86,85 @@ public sealed class RIUI : MonoBehaviour
         Bind("gamecreditsui", "LongButton_White_3", Back);
         Bind("popui", "Yes_Button", ConfirmExit);
         Bind("popui", "No_Button", Back);
+    }
+
+    // Conserva la proporcion del panel dentro del espacio asignado por ResponsiveElement.
+    private void PrepareSettingsAppearance()
+    {
+        if (!windows.TryGetValue("settingsui", out Window settings)) return;
+        foreach (Image image in settings.root.GetComponentsInChildren<Image>(true))
+        {
+            if (image.name != "CreditsBackground" || image.sprite == null) continue;
+            image.raycastTarget = false;
+            AspectRatioFitter backgroundFit = image.GetComponent<AspectRatioFitter>();
+            if (backgroundFit == null) backgroundFit = image.gameObject.AddComponent<AspectRatioFitter>();
+            backgroundFit.aspectRatio = image.sprite.rect.width / image.sprite.rect.height;
+            backgroundFit.aspectMode = AspectRatioFitter.AspectMode.EnvelopeParent;
+        }
+        foreach (RectTransform rect in settings.root.GetComponentsInChildren<RectTransform>(true))
+        {
+            if (rect.name != "SettingsPanel") continue;
+            if (rect.Find("SettingsContent") != null) return;
+            var children = new List<RectTransform>();
+            foreach (Transform child in rect)
+                if (child is RectTransform childRect) children.Add(childRect);
+            RectTransform content = Panel("SettingsContent", rect);
+            foreach (RectTransform child in children)
+            {
+                Vector2 min = child.anchorMin, max = child.anchorMax;
+                Vector2 position = child.anchoredPosition, size = child.sizeDelta;
+                child.SetParent(content, false);
+                child.anchorMin = min; child.anchorMax = max;
+                child.anchoredPosition = position; child.sizeDelta = size;
+            }
+            AspectRatioFitter fit = content.gameObject.AddComponent<AspectRatioFitter>();
+            fit.aspectRatio = 396f / 435f;
+            fit.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
+            break;
+        }
+    }
+
+    private void StyleBackButton()
+    {
+        if (!windows.TryGetValue("gamecreditsui", out Window credits)) return;
+        foreach (Button source in credits.root.GetComponentsInChildren<Button>(true))
+        {
+            if (source.name != "LongButton_White_3") continue;
+            Image sourceImage = source.targetGraphic as Image;
+            if (sourceImage == null || sourceImage.sprite == null) return;
+            Button target = backButton.GetComponent<Button>();
+            Image targetImage = backButton.GetComponent<Image>();
+            targetImage.sprite = sourceImage.sprite;
+            targetImage.type = sourceImage.type;
+            targetImage.color = sourceImage.color;
+            targetImage.material = sourceImage.material;
+            targetImage.pixelsPerUnitMultiplier = sourceImage.pixelsPerUnitMultiplier;
+            target.transition = source.transition;
+            target.colors = source.colors;
+            target.spriteState = source.spriteState;
+            RectTransform rect = (RectTransform)backButton.transform;
+            rect.pivot = new Vector2(0, 1);
+            rect.anchorMin = new Vector2(0.03f, 0.97f);
+            rect.anchorMax = new Vector2(0.25f, 0.97f);
+            rect.anchoredPosition = Vector2.zero;
+            rect.sizeDelta = Vector2.zero;
+            AspectRatioFitter fit = backButton.AddComponent<AspectRatioFitter>();
+            fit.aspectRatio = sourceImage.sprite.rect.width / sourceImage.sprite.rect.height;
+            fit.aspectMode = AspectRatioFitter.AspectMode.WidthControlsHeight;
+            TMP_Text label = backButton.GetComponentInChildren<TMP_Text>();
+            TMP_Text original = source.GetComponentInChildren<TMP_Text>(true);
+            if (original != null)
+            {
+                label.font = original.font;
+                label.fontSharedMaterial = original.fontSharedMaterial;
+                label.color = original.color;
+            }
+            label.verticalAlignment = VerticalAlignmentOptions.Geometry;
+            label.rectTransform.anchorMin = new Vector2(0.08f, 0.12f);
+            label.rectTransform.anchorMax = new Vector2(0.92f, 0.92f);
+            label.rectTransform.offsetMin = label.rectTransform.offsetMax = Vector2.zero;
+            return;
+        }
     }
 
     private void Bind(string windowId, string objectName, UnityAction action)
@@ -113,6 +194,10 @@ public sealed class RIUI : MonoBehaviour
             window.group.interactable = visible;
             window.group.blocksRaycasts = visible;
         }
+        // La escena puede conservar escala cero de la animacion Hide original.
+        // Este controlador muestra Pause sin esa animacion: restaura su grupo.
+        if (visible && window.id == "pauseui" && window.group != null)
+            window.group.transform.localScale = Vector3.one;
         window.root.SetActive(visible);
     }
 
@@ -132,6 +217,12 @@ public sealed class RIUI : MonoBehaviour
         if (forest != null) forest.gameObject.SetActive(id == "");
         records.SetActive(id == "records");
         backButton.SetActive(id == "settingsui" || id == "records");
+        // Settings: boton un 27% menor, sin reducir la fuente de Volver.
+        RectTransform backRect = (RectTransform)backButton.transform;
+        backRect.anchorMax = new Vector2(id == "settingsui" ? 0.19f : 0.25f, 0.97f);
+        TMP_Text backLabel = backButton.GetComponentInChildren<TMP_Text>(true);
+        backLabel.enableAutoSizing = id != "settingsui";
+        if (id == "settingsui") backLabel.fontSize = 30f;
         if (windows.TryGetValue(id, out Window target)) SetVisible(target, true);
         if (UnityEngine.EventSystems.EventSystem.current != null)
             UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
