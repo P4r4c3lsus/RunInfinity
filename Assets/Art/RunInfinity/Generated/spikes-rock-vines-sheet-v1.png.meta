@@ -1,0 +1,605 @@
+fileFormatVersion: 2
+guid: 318bc7e1717cb2c439253ab79875840a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2710805841548839542
+    second: spikes-rock-vines-sheet-v1_0
+  - first:
+      213: 5637111320353572674
+    second: spikes-rock-vines-sheet-v1_1
+  - first:
+      213: -5825695669101249326
+    second: spikes-rock-vines-sheet-v1_2
+  - first:
+      213: 3826184623823695213
+    second: spikes-rock-vines-sheet-v1_3
+  - first:
+      213: 752739046400969456
+    second: spikes-rock-vines-sheet-v1_4
+  - first:
+      213: -1160335972119451873
+    second: spikes-rock-vines-sheet-v1_5
+  - first:
+      213: 1543127585099580162
+    second: spikes-rock-vines-sheet-v1_6
+  - first:
+      213: 2661768139105114671
+    second: spikes-rock-vines-sheet-v1_7
+  - first:
+      213: 2674696549565186980
+    second: spikes-rock-vines-sheet-v1_8
+  - first:
+      213: 4868597605921723011
+    second: spikes-rock-vines-sheet-v1_9
+  - first:
+      213: -2028856965670550411
+    second: spikes-rock-vines-sheet-v1_10
+  - first:
+      213: -7903108335444630848
+    second: spikes-rock-vines-sheet-v1_11
+  - first:
+      213: -4285208183724054115
+    second: spikes-rock-vines-sheet-v1_12
+  - first:
+      213: 6719677236689361497
+    second: spikes-rock-vines-sheet-v1_13
+  - first:
+      213: -5801731380702707037
+    second: spikes-rock-vines-sheet-v1_14
+  - first:
+      213: 726274102529684498
+    second: spikes-rock-vines-sheet-v1_15
+  - first:
+      213: -5973636686251346117
+    second: spikes-rock-vines-sheet-v1_16
+  - first:
+      213: 1924676524889246948
+    second: spikes-rock-vines-sheet-v1_17
+  - first:
+      213: -8315947864240420628
+    second: spikes-rock-vines-sheet-v1_18
+  - first:
+      213: 6632860373039381336
+    second: spikes-rock-vines-sheet-v1_19
+  - first:
+      213: 5010739273792695724
+    second: spikes-rock-vines-sheet-v1_20
+  - first:
+      213: 7899532430041276815
+    second: spikes-rock-vines-sheet-v1_21
+  - first:
+      213: -7344581894798425024
+    second: spikes-rock-vines-sheet-v1_22
+  - first:
+      213: -5233111294856121416
+    second: spikes-rock-vines-sheet-v1_23
+  - first:
+      213: -4327836315990017307
+    second: spikes-rock-vines-sheet-v1_24
+  - first:
+      213: -3069075687367985258
+    second: spikes-rock-vines-sheet-v1_25
+  - first:
+      213: 912686760018082491
+    second: spikes-rock-vines-sheet-v1_26
+  - first:
+      213: -3581923739603860521
+    second: spikes-rock-vines-sheet-v1_27
+  - first:
+      213: 5899703978398635471
+    second: spikes-rock-vines-sheet-v1_28
+  - first:
+      213: -3382535173198750315
+    second: spikes-rock-vines-sheet-v1_29
+  - first:
+      213: 8018058417936428178
+    second: spikes-rock-vines-sheet-v1_30
+  - first:
+      213: 7281186959671205424
+    second: spikes-rock-vines-sheet-v1_31
+  - first:
+      213: -7855252912979728764
+    second: spikes-rock-vines-sheet-v1_32
+  - first:
+      213: 7806308646939488238
+    second: spikes-rock-vines-sheet-v1_33
+  - first:
+      213: -3866264559145009544
+    second: spikes-rock-vines-sheet-v1_34
+  - first:
+      213: -626536924673657499
+    second: spikes-rock-vines-sheet-v1_35
+  - first:
+      213: 7586809231639506672
+    second: spikes-rock-vines-sheet-v1_36
+  - first:
+      213: 3679783298445811325
+    second: spikes-rock-vines-sheet-v1_37
+  - first:
+      213: -5061097127227129754
+    second: spikes-rock-vines-sheet-v1_38
+  - first:
+      213: 5232741878163294389
+    second: spikes-rock-vines-sheet-v1_39
+  - first:
+      213: 1907976073030685759
+    second: spikes-rock-vines-sheet-v1_40
+  - first:
+      213: 6666411880746764951
+    second: spikes-rock-vines-sheet-v1_41
+  - first:
+      213: -5000932284685786365
+    second: spikes-rock-vines-sheet-v1_42
+  - first:
+      213: 5545385143387798587
+    second: spikes-rock-vines-sheet-v1_43
+  - first:
+      213: 5969105141527039930
+    second: spikes-rock-vines-sheet-v1_44
+  - first:
+      213: -5524596421544942107
+    second: spikes-rock-vines-sheet-v1_45
+  - first:
+      213: 1420865588803340906
+    second: spikes-rock-vines-sheet-v1_46
+  - first:
+      213: -1066444524203499439
+    second: spikes-rock-vines-sheet-v1_47
+  - first:
+      213: 6757079123426844991
+    second: spikes-rock-vines-sheet-v1_48
+  - first:
+      213: -7431879718414141191
+    second: spikes-rock-vines-sheet-v1_49
+  - first:
+      213: -7827244858858499992
+    second: spikes-rock-vines-sheet-v1_50
+  - first:
+      213: 8318961571644297804
+    second: spikes-rock-vines-sheet-v1_51
+  - first:
+      213: 6485074666071310426
+    second: spikes-rock-vines-sheet-v1_52
+  - first:
+      213: -6150748751121552001
+    second: spikes-rock-vines-sheet-v1_53
+  - first:
+      213: 6156108970379279530
+    second: spikes-rock-vines-sheet-v1_54
+  - first:
+      213: -6278955274422215283
+    second: spikes-rock-vines-sheet-v1_55
+  - first:
+      213: -1736583146330284094
+    second: spikes-rock-vines-sheet-v1_56
+  - first:
+      213: 3766955777080672112
+    second: spikes-rock-vines-sheet-v1_57
+  - first:
+      213: 5906639053351387148
+    second: spikes-rock-vines-sheet-v1_58
+  - first:
+      213: 8964237752876497591
+    second: spikes-rock-vines-sheet-v1_59
+  - first:
+      213: 93294777101568436
+    second: spikes-rock-vines-sheet-v1_60
+  - first:
+      213: -6690470164118428532
+    second: spikes-rock-vines-sheet-v1_61
+  - first:
+      213: 2425971748962923689
+    second: spikes-rock-vines-sheet-v1_62
+  - first:
+      213: 1843645861892027974
+    second: spikes-rock-vines-sheet-v1_63
+  - first:
+      213: 3822749180594840883
+    second: spikes-rock-vines-sheet-v1_64
+  - first:
+      213: -2508006362738448928
+    second: spikes-rock-vines-sheet-v1_65
+  - first:
+      213: -1145021271507329453
+    second: spikes-rock-vines-sheet-v1_66
+  - first:
+      213: -3277154379751487762
+    second: spikes-rock-vines-sheet-v1_67
+  - first:
+      213: 3551016051264473383
+    second: spikes-rock-vines-sheet-v1_68
+  - first:
+      213: -7420900242440461847
+    second: spikes-rock-vines-sheet-v1_69
+  - first:
+      213: 668622450347131697
+    second: spikes-rock-vines-sheet-v1_70
+  - first:
+      213: 6655086876623285865
+    second: spikes-rock-vines-sheet-v1_71
+  - first:
+      213: 7994876274698637082
+    second: spikes-rock-vines-sheet-v1_72
+  - first:
+      213: 831800005887381674
+    second: spikes-rock-vines-sheet-v1_73
+  - first:
+      213: 1001428859666825184
+    second: spikes-rock-vines-sheet-v1_74
+  - first:
+      213: 1824275083401194573
+    second: spikes-rock-vines-sheet-v1_75
+  - first:
+      213: -9002077826125057772
+    second: spikes-rock-vines-sheet-v1_76
+  - first:
+      213: -4010004661809142329
+    second: spikes-rock-vines-sheet-v1_77
+  - first:
+      213: 8455159442669510066
+    second: spikes-rock-vines-sheet-v1_78
+  - first:
+      213: -977474836718724648
+    second: spikes-rock-vines-sheet-v1_79
+  - first:
+      213: 3456218269786681329
+    second: spikes-rock-vines-sheet-v1_80
+  - first:
+      213: -7911255870000779201
+    second: spikes-rock-vines-sheet-v1_81
+  - first:
+      213: -4205709917124194136
+    second: spikes-rock-vines-sheet-v1_82
+  - first:
+      213: -1153483975496028485
+    second: spikes-rock-vines-sheet-v1_83
+  - first:
+      213: -4875854787824456486
+    second: spikes-rock-vines-sheet-v1_84
+  - first:
+      213: 8137855639063506165
+    second: spikes-rock-vines-sheet-v1_85
+  - first:
+      213: 7461738978831739233
+    second: spikes-rock-vines-sheet-v1_86
+  - first:
+      213: 1809936105788497026
+    second: spikes-rock-vines-sheet-v1_87
+  - first:
+      213: -5289491515982358827
+    second: spikes-rock-vines-sheet-v1_88
+  - first:
+      213: 837772362326442841
+    second: spikes-rock-vines-sheet-v1_89
+  - first:
+      213: 6596286689886173045
+    second: spikes-rock-vines-sheet-v1_90
+  - first:
+      213: 7948332734749460112
+    second: spikes-rock-vines-sheet-v1_91
+  - first:
+      213: 2165855087280556049
+    second: spikes-rock-vines-sheet-v1_92
+  - first:
+      213: 4853795179350377424
+    second: spikes-rock-vines-sheet-v1_93
+  - first:
+      213: -1887238495156642275
+    second: spikes-rock-vines-sheet-v1_94
+  - first:
+      213: 8205779286329340803
+    second: spikes-rock-vines-sheet-v1_95
+  - first:
+      213: -2097070805163314614
+    second: spikes-rock-vines-sheet-v1_96
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 256
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Spike_00
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 491
+        width: 354
+        height: 338
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b752321da804b81478b5beaeee097c20
+      internalID: 1505136848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spike_01
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 491
+        width: 353
+        height: 338
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e78307cc0f26f714aab038081aded12a
+      internalID: -2057538811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spike_02
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 491
+        width: 354
+        height: 338
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81fcdd8d8cf73b14eb496eb5746d2149
+      internalID: 1313373553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spike_03
+      rect:
+        serializedVersion: 2
+        x: 1376
+        y: 491
+        width: 354
+        height: 338
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c8171d7640c7bb4fa076213bd64049d
+      internalID: -443550849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spike_04
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 47
+        width: 353
+        height: 338
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 477adb0aa2fac5c449ef39340644e19c
+      internalID: 2071309338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spike_05
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 47
+        width: 353
+        height: 338
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4e78c134e6668e4885281c4e459d675
+      internalID: 235965024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spike_06
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 47
+        width: 354
+        height: 338
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 338b3688f638a6a449165467d02a42af
+      internalID: 818339345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spike_07
+      rect:
+        serializedVersion: 2
+        x: 1376
+        y: 47
+        width: 353
+        height: 338
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e635aad205b8b24b8486dbbacd37013
+      internalID: -1227727489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 8edbba1ba9e6e874184267ea9df274d4
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Spike_00: 1505136848
+      Spike_01: -2057538811
+      Spike_02: 1313373553
+      Spike_03: -443550849
+      Spike_04: 2071309338
+      Spike_05: 235965024
+      Spike_06: 818339345
+      Spike_07: -1227727489
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

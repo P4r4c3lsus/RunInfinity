@@ -1,0 +1,66 @@
+string folder = "Assets/Art/RunInfinity/AppIcons/";
+System.IO.Directory.CreateDirectory("Distribution/GooglePlay");
+var source = new UnityEngine.Texture2D(2, 2, UnityEngine.TextureFormat.RGBA32, false);
+if (!UnityEngine.ImageConversion.LoadImage(source, System.IO.File.ReadAllBytes(folder + "hobbitrun-icon-master-v1.png")))
+    throw new System.Exception("Cannot load the app icon master.");
+var original = source.GetPixels32();
+var pixels = new UnityEngine.Color32[512 * 512];
+for (int y = 0; y < 512; y++)
+for (int x = 0; x < 512; x++)
+{
+    var pixel = original[(y * source.height / 512) * source.width + x * source.width / 512];
+    if (pixel.a != 255) throw new System.Exception("Store icon must have an opaque background.");
+    pixels[y * 512 + x] = pixel;
+}
+var store = new UnityEngine.Texture2D(512, 512, UnityEngine.TextureFormat.RGBA32, false);
+store.SetPixels32(pixels); store.Apply();
+var png = UnityEngine.ImageConversion.EncodeToPNG(store);
+if (png.Length > 1024 * 1024) throw new System.Exception("Store icon exceeds 1024 KB.");
+System.IO.File.WriteAllBytes(folder + "hobbitrun-icon-512.png", png);
+System.IO.File.WriteAllBytes("Distribution/GooglePlay/hobbitrun-play-icon-512.png", png);
+UnityEngine.Object.DestroyImmediate(store);
+UnityEngine.Object.DestroyImmediate(source);
+var background = new UnityEngine.Texture2D(512, 512, UnityEngine.TextureFormat.RGBA32, false);
+var fill = new UnityEngine.Color32[512 * 512];
+for (int i = 0; i < fill.Length; i++) fill[i] = new UnityEngine.Color32(16, 60, 52, 255);
+background.SetPixels32(fill); background.Apply();
+System.IO.File.WriteAllBytes(folder + "hobbitrun-adaptive-background.png", UnityEngine.ImageConversion.EncodeToPNG(background));
+UnityEngine.Object.DestroyImmediate(background);
+UnityEditor.AssetDatabase.Refresh();
+foreach (string name in new string[] { "hobbitrun-icon-master-v1.png", "hobbitrun-icon-512.png", "hobbitrun-adaptive-foreground-v1.png", "hobbitrun-adaptive-background.png" })
+{
+    var importer = UnityEditor.AssetImporter.GetAtPath(folder + name) as UnityEditor.TextureImporter;
+    if (importer == null) throw new System.Exception("Missing icon importer: " + name);
+    importer.textureType = UnityEditor.TextureImporterType.Default;
+    importer.npotScale = UnityEditor.TextureImporterNPOTScale.None;
+    importer.textureCompression = UnityEditor.TextureImporterCompression.Uncompressed;
+    importer.mipmapEnabled = false;
+    importer.sRGBTexture = true;
+    importer.alphaSource = UnityEditor.TextureImporterAlphaSource.FromInput;
+    importer.alphaIsTransparency = name.Contains("foreground");
+    importer.filterMode = UnityEngine.FilterMode.Point;
+    importer.maxTextureSize = 2048;
+    importer.SaveAndReimport();
+}
+var legacy = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Texture2D>(folder + "hobbitrun-icon-512.png");
+var back = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Texture2D>(folder + "hobbitrun-adaptive-background.png");
+var front = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Texture2D>(folder + "hobbitrun-adaptive-foreground-v1.png");
+var android = UnityEditor.Build.NamedBuildTarget.Android;
+int slots = 0;
+foreach (var kind in UnityEditor.PlayerSettings.GetSupportedIconKinds(android))
+{
+    var icons = UnityEditor.PlayerSettings.GetPlatformIcons(android, kind);
+    foreach (var icon in icons)
+    {
+        if (kind == UnityEditor.Android.AndroidPlatformIconKind.Adaptive)
+            icon.SetTextures(new UnityEngine.Texture2D[] { back, front });
+        else icon.SetTexture(legacy);
+        slots++;
+    }
+    UnityEditor.PlayerSettings.SetPlatformIcons(android, kind, icons);
+}
+// Fallback for platforms that inherit the default application icon.
+UnityEditor.PlayerSettings.SetIcons(UnityEditor.Build.NamedBuildTarget.Unknown, new UnityEngine.Texture2D[] { legacy }, UnityEditor.IconKind.Any);
+UnityEditor.AssetDatabase.SaveAssets();
+return new { configuredSlots = slots, storeSize = "512x512", storeBytes = png.Length,
+    storePath = "Distribution/GooglePlay/hobbitrun-play-icon-512.png", adaptiveLayers = "Background, Foreground" };

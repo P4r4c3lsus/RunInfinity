@@ -1,0 +1,207 @@
+if (UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode)
+    throw new System.Exception("Exit Play mode before integrating sprites.");
+var game = UnityEngine.Object.FindAnyObjectByType<RunInfinity.Adicional.RIGame>();
+if (game == null || game.jugador == null || game.plantillaObstaculo == null)
+    throw new System.Exception("The scene needs the configured RunInfinity game, player and obstacle template.");
+string art = "Assets/Art/RunInfinity/Generated/";
+string animations = "Assets/Art/RunInfinity/Animations/";
+System.IO.Directory.CreateDirectory(animations);
+UnityEditor.AssetDatabase.Refresh();
+
+System.Func<string, int, int, string, UnityEngine.Sprite[]> slice = (path, columns, rows, prefix) =>
+{
+    var importer = UnityEditor.AssetImporter.GetAtPath(path) as UnityEditor.TextureImporter;
+    if (importer == null) throw new System.Exception("Missing texture: " + path);
+    importer.textureType = UnityEditor.TextureImporterType.Sprite;
+    importer.spriteImportMode = UnityEditor.SpriteImportMode.Multiple;
+    importer.spritePixelsPerUnit = 256;
+    importer.filterMode = UnityEngine.FilterMode.Point;
+    importer.textureCompression = UnityEditor.TextureImporterCompression.Uncompressed;
+    importer.mipmapEnabled = false;
+    importer.alphaIsTransparency = true;
+    importer.npotScale = UnityEditor.TextureImporterNPOTScale.None;
+    importer.maxTextureSize = 4096;
+    var settings = new UnityEditor.TextureImporterSettings();
+    importer.ReadTextureSettings(settings);
+    settings.spriteMeshType = UnityEngine.SpriteMeshType.FullRect;
+    importer.SetTextureSettings(settings);
+    importer.SaveAndReimport();
+    var factory = new UnityEditor.U2D.Sprites.SpriteDataProviderFactories();
+    factory.Init();
+    var provider = factory.GetSpriteEditorDataProviderFromObject(importer);
+    if (provider == null) throw new System.Exception("No sprite data provider: " + path);
+    provider.InitSpriteEditorDataProvider();
+    var edit = provider.GetDataProvider<UnityEditor.U2D.Sprites.ISpriteFrameEditCapability>();
+    if (edit == null) throw new System.Exception("No sprite editing capability: " + path);
+    var caps = edit.GetEditCapability();
+    if (!caps.HasCapability(UnityEditor.U2D.Sprites.EEditCapability.CreateAndDeleteSprite) ||
+        !caps.HasCapability(UnityEditor.U2D.Sprites.EEditCapability.EditSpriteRect) ||
+        !caps.HasCapability(UnityEditor.U2D.Sprites.EEditCapability.EditPivot) ||
+        !caps.HasCapability(UnityEditor.U2D.Sprites.EEditCapability.EditSpriteName))
+        throw new System.Exception("Importer does not support the required slicing operations.");
+    var ids = provider.GetDataProvider<UnityEditor.U2D.Sprites.ISpriteNameFileIdDataProvider>();
+    if (ids == null) throw new System.Exception("Missing sprite name/file ID provider.");
+    var source = new UnityEngine.Texture2D(2, 2);
+    if (!UnityEngine.ImageConversion.LoadImage(source, System.IO.File.ReadAllBytes(path)))
+        throw new System.Exception("Cannot read image " + path);
+    int width = source.width, height = source.height;
+    var pixels = source.GetPixels32();
+    UnityEngine.Object.DestroyImmediate(source);
+    var rects = new System.Collections.Generic.List<UnityEditor.SpriteRect>();
+    var pairs = new System.Collections.Generic.List<UnityEditor.SpriteNameFileIdPair>();
+    var previous = provider.GetSpriteRects();
+    for (int row = 0; row < rows; row++)
+    for (int column = 0; column < columns; column++)
+    {
+        int left = column * width / columns, right = (column + 1) * width / columns;
+        int bottom = height - (row + 1) * height / rows, top = height - row * height / rows;
+        int minX = right, minY = top, maxX = left, maxY = bottom;
+        for (int y = bottom; y < top; y++)
+        for (int x = left; x < right; x++)
+        {
+            if (pixels[y * width + x].a < 128) continue;
+            minX = System.Math.Min(minX, x); maxX = System.Math.Max(maxX, x);
+            minY = System.Math.Min(minY, y); maxY = System.Math.Max(maxY, y);
+        }
+        if (minX > maxX || minY > maxY) throw new System.Exception("Empty sprite cell.");
+        string name = prefix + "_" + (row * columns + column).ToString("D2");
+        var id = UnityEngine.GUID.Generate();
+        foreach (var old in previous) if (old.name == name) id = old.spriteID;
+        rects.Add(new UnityEditor.SpriteRect {
+            name = name, spriteID = id,
+            rect = new UnityEngine.Rect(minX, minY, maxX - minX + 1, maxY - minY + 1),
+            alignment = UnityEngine.SpriteAlignment.BottomCenter,
+            pivot = new UnityEngine.Vector2(0.5f, 0)
+        });
+        pairs.Add(new UnityEditor.SpriteNameFileIdPair(name, id));
+    }
+    provider.SetSpriteRects(rects.ToArray());
+    ids.SetNameFileIdPairs(pairs);
+    provider.Apply();
+    importer.SaveAndReimport();
+    var sprites = new System.Collections.Generic.List<UnityEngine.Sprite>();
+    foreach (var asset in UnityEditor.AssetDatabase.LoadAllAssetsAtPath(path))
+        if (asset is UnityEngine.Sprite) sprites.Add((UnityEngine.Sprite)asset);
+    sprites.Sort((a, b) => string.CompareOrdinal(a.name, b.name));
+    if (sprites.Count != columns * rows) throw new System.Exception("Wrong sprite count: " + path);
+    return sprites.ToArray();
+};
+var hobbit = slice(art + "hobbit-sheet-v1.png", 4, 4, "Hobbit");
+var spikes = slice(art + "spikes-rock-vines-sheet-v1.png", 4, 2, "Spike");
+
+System.Func<string, int[], float, bool, UnityEngine.AnimationClip> makeClip = (name, indices, fps, loop) =>
+{
+    string path = animations + name + ".anim";
+    var clip = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.AnimationClip>(path);
+    if (clip == null) { clip = new UnityEngine.AnimationClip(); UnityEditor.AssetDatabase.CreateAsset(clip, path); }
+    clip.name = name;
+    clip.frameRate = fps;
+    var keys = new UnityEditor.ObjectReferenceKeyframe[indices.Length + 1];
+    for (int i = 0; i < indices.Length; i++)
+        keys[i] = new UnityEditor.ObjectReferenceKeyframe { time = i / fps, value = hobbit[indices[i]] };
+    keys[indices.Length] = new UnityEditor.ObjectReferenceKeyframe {
+        time = indices.Length / fps, value = hobbit[indices[loop ? 0 : indices.Length - 1]]
+    };
+    var binding = new UnityEditor.EditorCurveBinding {
+        path = "", type = typeof(UnityEngine.SpriteRenderer), propertyName = "m_Sprite"
+    };
+    UnityEditor.AnimationUtility.SetObjectReferenceCurve(clip, binding, keys);
+    var clipSettings = UnityEditor.AnimationUtility.GetAnimationClipSettings(clip);
+    clipSettings.loopTime = loop;
+    UnityEditor.AnimationUtility.SetAnimationClipSettings(clip, clipSettings);
+    UnityEditor.EditorUtility.SetDirty(clip);
+    return clip;
+};
+var idle = makeClip("Idle", new int[] { 0, 1, 2, 3 }, 5, true);
+var run = makeClip("Run", new int[] { 4, 5, 6, 7, 8, 9, 10, 11 }, 12, true);
+var jump = makeClip("Jump", new int[] { 13, 14 }, 8, false);
+var fall = makeClip("Fall", new int[] { 13 }, 8, false);
+var land = makeClip("Land", new int[] { 15, 12 }, 20, false);
+string controllerPath = animations + "Hobbit.controller";
+var controller = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEditor.Animations.AnimatorController>(controllerPath);
+if (controller == null) controller = UnityEditor.Animations.AnimatorController.CreateAnimatorControllerAtPath(controllerPath);
+var stateMachine = controller.layers[0].stateMachine;
+foreach (var clip in new UnityEngine.AnimationClip[] { idle, run, jump, fall, land })
+{
+    UnityEditor.Animations.AnimatorState state = null;
+    foreach (var child in stateMachine.states) if (child.state.name == clip.name) state = child.state;
+    if (state == null) state = stateMachine.AddState(clip.name);
+    state.motion = clip;
+    if (clip == idle) stateMachine.defaultState = state;
+}
+UnityEditor.EditorUtility.SetDirty(controller);
+UnityEditor.Undo.IncrementCurrentGroup();
+int undo = UnityEditor.Undo.GetCurrentGroup();
+UnityEditor.Undo.SetCurrentGroupName("Integrate Hobbit sprites and rocky spikes");
+var player = game.jugador;
+var playerOriginal = player.GetComponent<UnityEngine.SpriteRenderer>();
+var box = player.GetComponent<UnityEngine.BoxCollider2D>();
+var childTransform = player.transform.Find("HobbitVisual");
+UnityEngine.GameObject visual;
+if (childTransform == null)
+{
+    visual = new UnityEngine.GameObject("HobbitVisual");
+    UnityEditor.Undo.RegisterCreatedObjectUndo(visual, "Create Hobbit visual");
+    visual.transform.SetParent(player.transform, false);
+}
+else visual = childTransform.gameObject;
+UnityEditor.Undo.RecordObject(visual.transform, "Fit Hobbit visual");
+visual.transform.localPosition = new UnityEngine.Vector3(box.offset.x, box.offset.y - box.size.y * 0.5f, 0);
+visual.transform.localScale = UnityEngine.Vector3.one * (box.size.y / hobbit[0].bounds.size.y);
+var visualScale = visual.transform.localScale;
+visualScale.x *= UnityEngine.Mathf.Abs(player.transform.lossyScale.y / player.transform.lossyScale.x);
+visual.transform.localScale = visualScale;
+var renderer = visual.GetComponent<UnityEngine.SpriteRenderer>();
+if (renderer == null) renderer = UnityEditor.Undo.AddComponent<UnityEngine.SpriteRenderer>(visual);
+UnityEditor.Undo.RecordObject(renderer, "Assign Hobbit sprite");
+renderer.sprite = hobbit[0]; renderer.color = UnityEngine.Color.white;
+renderer.sortingLayerID = playerOriginal.sortingLayerID; renderer.sortingOrder = playerOriginal.sortingOrder;
+renderer.sharedMaterial = playerOriginal.sharedMaterial;
+UnityEditor.Undo.RecordObject(playerOriginal, "Hide placeholder");
+playerOriginal.enabled = false; playerOriginal.color = UnityEngine.Color.white;
+var animator = visual.GetComponent<UnityEngine.Animator>();
+if (animator == null) animator = UnityEditor.Undo.AddComponent<UnityEngine.Animator>(visual);
+UnityEditor.Undo.RecordObject(animator, "Assign Hobbit controller");
+animator.runtimeAnimatorController = controller;
+animator.cullingMode = UnityEngine.AnimatorCullingMode.AlwaysAnimate;
+var driver = visual.GetComponent<RunInfinity.Adicional.RICharacterAnimation>();
+if (driver == null) driver = UnityEditor.Undo.AddComponent<RunInfinity.Adicional.RICharacterAnimation>(visual);
+UnityEditor.Undo.RecordObject(driver, "Connect gameplay animation");
+driver.player = player; driver.game = game;
+
+foreach (var obstacle in new UnityEngine.GameObject[] { game.plantillaObstaculo, game.obstaculoDePrueba })
+{
+    if (obstacle == null) continue;
+    var obstacleBox = obstacle.GetComponent<UnityEngine.BoxCollider2D>();
+    var original = obstacle.GetComponent<UnityEngine.SpriteRenderer>();
+    if (obstacleBox == null || original == null) throw new System.Exception("Missing obstacle collider or renderer.");
+    var existing = obstacle.transform.Find("RockSpikeVisual");
+    UnityEngine.GameObject rock;
+    if (existing == null)
+    {
+        rock = new UnityEngine.GameObject("RockSpikeVisual");
+        UnityEditor.Undo.RegisterCreatedObjectUndo(rock, "Create rocky spike visual");
+        rock.transform.SetParent(obstacle.transform, false);
+    }
+    else rock = existing.gameObject;
+    UnityEditor.Undo.RecordObject(rock.transform, "Fit spike visual");
+    float maxWidth = 0, maxHeight = 0;
+    foreach (var spike in spikes) { maxWidth = UnityEngine.Mathf.Max(maxWidth, spike.bounds.size.x); maxHeight = UnityEngine.Mathf.Max(maxHeight, spike.bounds.size.y); }
+    rock.transform.localPosition = new UnityEngine.Vector3(obstacleBox.offset.x, obstacleBox.offset.y - obstacleBox.size.y * 0.5f, 0);
+    rock.transform.localScale = new UnityEngine.Vector3(obstacleBox.size.x / maxWidth, obstacleBox.size.y / maxHeight, 1);
+    var rockRenderer = rock.GetComponent<UnityEngine.SpriteRenderer>();
+    if (rockRenderer == null) rockRenderer = UnityEditor.Undo.AddComponent<UnityEngine.SpriteRenderer>(rock);
+    UnityEditor.Undo.RecordObject(rockRenderer, "Assign rocky sprite");
+    rockRenderer.sprite = spikes[4]; rockRenderer.color = UnityEngine.Color.white;
+    rockRenderer.sharedMaterial = original.sharedMaterial;
+    rockRenderer.sortingLayerID = original.sortingLayerID; rockRenderer.sortingOrder = original.sortingOrder;
+    UnityEditor.Undo.RecordObject(original, "Hide spike placeholder"); original.enabled = false;
+    var appearance = rock.GetComponent<RunInfinity.Adicional.RIObstacleAppearance>();
+    if (appearance == null) appearance = UnityEditor.Undo.AddComponent<RunInfinity.Adicional.RIObstacleAppearance>(rock);
+    UnityEditor.Undo.RecordObject(appearance, "Assign spike variations"); appearance.variants = spikes;
+}
+UnityEditor.AssetDatabase.SaveAssets();
+UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(player.gameObject.scene);
+UnityEditor.Undo.CollapseUndoOperations(undo);
+UnityEditor.SceneManagement.EditorSceneManager.SaveScene(player.gameObject.scene);
+return new { sprites = hobbit.Length, obstacleVariants = spikes.Length, controller = controllerPath, scene = player.gameObject.scene.path };

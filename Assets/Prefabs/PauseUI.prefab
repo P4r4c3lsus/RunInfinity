@@ -171,8 +171,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9200000000000000000}
   - component: {fileID: 7091865484045005621}
+  - component: {fileID: 9200000000000000000}
   - component: {fileID: 7935626409204624127}
   - component: {fileID: 2196300620422093222}
   m_Layer: 0
@@ -201,6 +201,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &9200000000000000000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091926127860811138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92000bf313f6476a8e2e049838cb6916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RunInfinity.Adicional.RIButtonLabelCenter
+  buttonRect: {fileID: 3634350483845947816}
+  verticalCenter: 0.53
 --- !u!222 &7935626409204624127
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -309,8 +323,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9200000000000000001}
   - component: {fileID: 7422861866601980697}
+  - component: {fileID: 9200000000000000001}
   - component: {fileID: 6163163497850967982}
   - component: {fileID: 6565652289886684137}
   m_Layer: 0
@@ -339,6 +353,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &9200000000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093589273883939328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92000bf313f6476a8e2e049838cb6916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RunInfinity.Adicional.RIButtonLabelCenter
+  buttonRect: {fileID: 6298383306768556344}
+  verticalCenter: 0.53
 --- !u!222 &6163163497850967982
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -470,8 +498,8 @@ RectTransform:
   - {fileID: 9000317004451108045}
   m_Father: {fileID: 1158286101395051125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.364960615, y: 0}
-  m_AnchorMax: {x: 0.635039385, y: 0.8035547}
+  m_AnchorMin: {x: 0.3649606, y: 0}
+  m_AnchorMax: {x: 0.6350394, y: 0.8035547}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -920,8 +948,8 @@ RectTransform:
   - {fileID: 7091865484045005621}
   m_Father: {fileID: 9000317004451108045}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.068352045, y: 0}
-  m_AnchorMax: {x: 0.931647955, y: 0.21271077}
+  m_AnchorMin: {x: 0.06835204, y: 0}
+  m_AnchorMax: {x: 0.93164796, y: 0.21271077}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
@@ -1043,7 +1071,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.9677165, y: 0.45}
   m_AnchorMax: {x: 1, y: 0.90555555}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -37, y: -32.332}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &309209063302097757
@@ -1136,8 +1164,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9200000000000000002}
   - component: {fileID: 3829261139191479187}
+  - component: {fileID: 9200000000000000002}
   - component: {fileID: 7981224339873637895}
   - component: {fileID: 2722528329685766558}
   m_Layer: 0
@@ -1166,6 +1194,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &9200000000000000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3968543307077405556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92000bf313f6476a8e2e049838cb6916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RunInfinity.Adicional.RIButtonLabelCenter
+  buttonRect: {fileID: 5063895739739858882}
+  verticalCenter: 0.53
 --- !u!222 &7981224339873637895
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1298,8 +1340,8 @@ RectTransform:
   - {fileID: 508477594155733417}
   m_Father: {fileID: 7900799532567039915}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.444488195, y: 0}
-  m_AnchorMax: {x: 0.555511805, y: 1}
+  m_AnchorMin: {x: 0.4444882, y: 0}
+  m_AnchorMax: {x: 0.55551183, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1484,7 +1526,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.35}
   m_AnchorMax: {x: 0.092519686, y: 0.95}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 77, y: -27.28}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7161780942719652871
@@ -1624,8 +1666,8 @@ RectTransform:
   - {fileID: 7422861866601980697}
   m_Father: {fileID: 9000317004451108045}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.068352045, y: 0.78728926}
-  m_AnchorMax: {x: 0.931647955, y: 1}
+  m_AnchorMin: {x: 0.06835204, y: 0.78728926}
+  m_AnchorMax: {x: 0.93164796, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
@@ -1934,8 +1976,8 @@ RectTransform:
   - {fileID: 3829261139191479187}
   m_Father: {fileID: 9000317004451108045}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.068352065, y: 0.39040208}
-  m_AnchorMax: {x: 0.931647935, y: 0.6031128}
+  m_AnchorMin: {x: 0.068352066, y: 0.39040208}
+  m_AnchorMax: {x: 0.93164796, y: 0.6031128}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
@@ -2021,45 +2063,3 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &9200000000000000000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1091926127860811138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92000bf313f6476a8e2e049838cb6916, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RunInfinity.Adicional.RIButtonLabelCenter
-  buttonRect: {fileID: 3634350483845947816}
-  verticalCenter: 0.53
---- !u!114 &9200000000000000001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2093589273883939328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92000bf313f6476a8e2e049838cb6916, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RunInfinity.Adicional.RIButtonLabelCenter
-  buttonRect: {fileID: 6298383306768556344}
-  verticalCenter: 0.53
---- !u!114 &9200000000000000002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3968543307077405556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92000bf313f6476a8e2e049838cb6916, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RunInfinity.Adicional.RIButtonLabelCenter
-  buttonRect: {fileID: 5063895739739858882}
-  verticalCenter: 0.53

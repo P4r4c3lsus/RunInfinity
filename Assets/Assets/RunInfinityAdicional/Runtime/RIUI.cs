@@ -21,7 +21,7 @@ public sealed class RIUI : MonoBehaviour
     private readonly Dictionary<string, Window> windows = new Dictionary<string, Window>();
     private readonly Stack<string> history = new Stack<string>();
     private string current;
-    private GameObject hud, backButton, records;
+    private GameObject hud, backButton, records, recordsBackground;
     private RectTransform safeArea;
     private TMP_Text scoreText, recordsText;
     private TMP_FontAsset font;
@@ -216,6 +216,7 @@ public sealed class RIUI : MonoBehaviour
         }
         if (forest != null) forest.gameObject.SetActive(id == "");
         records.SetActive(id == "records");
+        recordsBackground.SetActive(id == "records");
         backButton.SetActive(id == "settingsui" || id == "records");
         // Settings: boton un 27% menor, sin reducir la fuente de Volver.
         RectTransform backRect = (RectTransform)backButton.transform;
@@ -350,11 +351,33 @@ public sealed class RIUI : MonoBehaviour
         Label("Instructions", hud.transform, "TOCA PARA SALTAR\nEspacio o clic en computadora", new Vector2(0.04f, 0.02f), new Vector2(0.65f, 0.13f), 26);
         ButtonAt("Saltar", hud.transform, new Vector2(0.7f, 0.03f), new Vector2(0.97f, 0.14f), game.jugador.RequestJump);
         records = Panel("Records", safeArea).gameObject;
-        Image background = records.AddComponent<Image>();
-        background.color = new Color(0.07f, 0.12f, 0.18f, 0.98f);
+        // El bosque ocupa toda la pantalla como en MainMenu; el contenido conserva
+        // el area segura para que las muescas y barras no tapen texto ni botones.
+        recordsBackground = Panel("Records Background", canvasObject.transform).gameObject;
+        recordsBackground.transform.SetAsFirstSibling();
+        UnityEngine.UI.Image background = recordsBackground.AddComponent<UnityEngine.UI.Image>();
+        background.raycastTarget = false;
+        background.color = new Color(0.07f, 0.12f, 0.18f, 1f);
+        if (windows.TryGetValue("mainmenuui", out Window menu))
+        {
+            foreach (UnityEngine.UI.Image source in menu.root.GetComponentsInChildren<UnityEngine.UI.Image>(true))
+            {
+                if (source.name != "Background_Rectangle_1" || source.sprite == null) continue;
+                background.sprite = source.sprite;
+                background.type = source.type;
+                background.color = source.color;
+                background.material = source.material;
+                background.preserveAspect = source.preserveAspect;
+                background.pixelsPerUnitMultiplier = source.pixelsPerUnitMultiplier;
+                break;
+            }
+        }
         recordsText = Label("Best Score", records.transform, "", new Vector2(0.1f, 0.25f), new Vector2(0.9f, 0.8f), 40);
+        recordsText.outlineColor = new Color32(10, 18, 20, 255);
+        recordsText.outlineWidth = 0.2f;
         backButton = ButtonAt("Volver", safeArea, new Vector2(0.03f, 0.9f), new Vector2(0.3f, 0.98f), Back).gameObject;
         records.SetActive(false);
+        recordsBackground.SetActive(false);
         backButton.SetActive(false);
         ApplySafeArea();
     }
